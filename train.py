@@ -10,7 +10,7 @@ from torch.autograd import Variable
 
 import torch.nn as nn
 import torch
-from dataset import StackedText, StackedText_test
+from dataset import StackedText, StackedText_test, StackedText_static
 
 os.makedirs("images", exist_ok=True)
 os.makedirs("models", exist_ok=True)
@@ -125,7 +125,7 @@ for iii in range(opt.ntrails):
         adversarial_loss.cuda()
         df_loss.cuda()
 
-    datatset = StackedText(size=opt.img_size)
+    datatset = StackedText_static(size=opt.img_size)
     dataloader = torch.utils.data.DataLoader(dataset=datatset,
                                              batch_size=opt.batch_size,
                                              shuffle=True,
