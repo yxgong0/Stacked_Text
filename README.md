@@ -1,7 +1,10 @@
 # Stacked Text
 
 ### Dataset Download:
+Stacked_Text:
 Baidu Netdisk: https://pan.baidu.com/s/1g_tZ6GZe2GoCl0TM5eYhMA?pwd=1234 Code: 1234
+ICDAR13_chars:
+Baidu Netdisk: Code: 
 
 ### Requirements
 
@@ -13,7 +16,9 @@ imageio
 numpy
 
 ### Usage
-If GPU is available, the code wil automatically use the GPU.
+Create ./data folder, and unzip the dataset file to this folder. The default code will utilize the static dataset Stacked_Text; if you want to generate the stacked images dynamically in training, download and unzip the ICDAR13_chars file, and change the dataset class in train.py from StackedText_static to StackedText.
+
+If GPU is available, the code will automatically use the GPU.
 To train a baseline model, use
 
 ```shell
