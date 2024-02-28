@@ -11,7 +11,7 @@ class StackedText(torch.utils.data.Dataset):
         self.image_list = []
         folders = [x for x in os.listdir(root) if os.path.isdir(os.path.join(root, x))]
         for folder in folders:
-            names = [x for x in os.listdir(os.path.join(root, folder)) if x .endswith('jpg')]
+            names = [x for x in os.listdir(os.path.join(root, folder)) if x.endswith('jpg')]
             for name in names:
                 self.image_list.append(os.path.join(root, folder, name))
         self.size = size
@@ -26,6 +26,28 @@ class StackedText(torch.utils.data.Dataset):
         img2 = to_tensor(img2)
         img3 = to_tensor(img3)
         img = torch.cat((img1, img2, img3), dim=0)
+        norm = torchvision.transforms.Normalize([0.5], [0.5])
+        img = norm(img)
+        return img
+
+    def __len__(self):
+        return len(self.image_list)*13
+
+class StackedText_static(torch.utils.data.Dataset):
+    def __init__(self, root='data/Stacked_Text', size=28):
+        super(StackedText_static, self).__init__()
+        self.image_list = []
+        folders = [x for x in os.listdir(root) if os.path.isdir(os.path.join(root, x))]
+        for folder in folders:
+            names = [x for x in os.listdir(os.path.join(root, folder)) if x.endswith('jpg')]
+            for name in names:
+                self.image_list.append(os.path.join(root, folder, name))
+        self.size = size
+
+    def __getitem__(self, index):
+        img = Image.open(self.image_list[index]).resize((self.size, self.size))
+        to_tensor = torchvision.transforms.ToTensor()
+        img = to_tensor(img)
         norm = torchvision.transforms.Normalize([0.5], [0.5])
         img = norm(img)
         return img
