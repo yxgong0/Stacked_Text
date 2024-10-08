@@ -37,3 +37,16 @@ To generate samples and test the metrics with the trained model, run
 ```shell
 python generate_and_eval.py --method none
 python generate_and_eval.py --method test
+```
+
+### Citation：
+```shell
+@inproceedings{gong2024testing,
+  title={Testing generated distributions in {GANs} to penalize mode collapse},
+  author={Gong, Yanxiang and Xie, Zhiwei and Xie, Mei and Ma, Xin},
+  booktitle={International Conference on Artificial Intelligence and Statistics},
+  pages={442--450},
+  year={2024},
+  organization={PMLR}
+}
+```
